@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.xubol.bookmanager.mapper.BookMapper">
+
+    <!-- 查询热门图书（按借阅次数排序） -->
+    <select id="selectHotBooks" resultType="top.xubol.bookmanager.vo.HotBookVO">
+        SELECT
+            b.id,
+            b.title,
+            b.author,
+            b.publisher,
+            b.cover_url AS coverUrl,
+            b.category_id AS categoryId,
+            c.name AS categoryName,
+            b.stock,
+            b.description,
+            COUNT(br.id) AS borrowCount
+        FROM books b
+        LEFT JOIN categories c ON b.category_id = c.id
+        LEFT JOIN borrow_records br ON b.id = br.book_id
+        WHERE b.status = 1
+        GROUP BY b.id, b.title, b.author, b.publisher, b.cover_url,
+                 b.category_id, c.name, b.stock, b.description
+        ORDER BY borrowCount DESC
+        LIMIT #{limit}
+    </select>
+
+    <!-- 查询各分类图书数量统计 -->
+    <select id="selectCategoryStats" resultType="java.util.Map">
+        SELECT
+            c.id AS categoryId,
+            c.name AS categoryName,
+            COUNT(b.id) AS bookCount
+        FROM categories c
+        LEFT JOIN books b ON c.id = b.category_id AND b.status = 1
+        WHERE c.parent_id = 0
+        GROUP BY c.id, c.name
+        ORDER BY bookCount DESC
+    </select>
+
+    <!-- 查询最近N天的借阅趋势 -->
+    <select id="selectBorrowTrend" resultType="java.util.Map">
+        SELECT
+            DATE(borrow_time) AS borrowDate,
+            COUNT(*) AS borrowCount
+        FROM borrow_records
+        WHERE borrow_time >= DATE_SUB(CURDATE(), INTERVAL #{days} DAY)
+        GROUP BY DATE(borrow_time)
+        ORDER BY borrowDate ASC
+    </select>
+
+</mapper>

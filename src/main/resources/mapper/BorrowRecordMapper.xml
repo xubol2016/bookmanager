@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.xubol.bookmanager.mapper.BorrowRecordMapper">
+
+    <!-- 统计今日借阅数量 -->
+    <select id="countTodayBorrow" resultType="java.lang.Long">
+        SELECT COUNT(*)
+        FROM borrow_records
+        WHERE DATE(borrow_time) = CURDATE()
+    </select>
+
+    <!-- 统计今日归还数量 -->
+    <select id="countTodayReturn" resultType="java.lang.Long">
+        SELECT COUNT(*)
+        FROM borrow_records
+        WHERE DATE(return_time) = CURDATE()
+    </select>
+
+    <!-- 统计超期未还数量 -->
+    <select id="countOverdue" resultType="java.lang.Long">
+        SELECT COUNT(*)
+        FROM borrow_records
+        WHERE status = 3 OR (status = 1 AND due_time &lt; NOW())
+    </select>
+
+</mapper>

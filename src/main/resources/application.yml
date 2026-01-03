@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: bookmanager
+  datasource:
+    url: jdbc:mysql://localhost:3306/coursemanager?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+server:
+  port: 8080
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-field: deleted # 逻辑删除字段
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: top.xubol.bookmanager.entity
+# 文件上传配置
+file:
+  upload:
+    path: uploads/
+    avatar-path: uploads/avatar/

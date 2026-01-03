@@ -1,0 +1,26 @@
+# Tasks
+
+- [ ] Project Initialization <!-- id: 0 -->
+    - [ ] Initialize Spring Boot Backend Project <!-- id: 1 -->
+    - [ ] Initialize Vue 3 Frontend Project <!-- id: 2 -->
+    - [ ] Configure Database Connection <!-- id: 3 -->
+- [ ] User Management Implementation <!-- id: 4 -->
+    - [ ] Backend: User Entity, Mapper, Service, Controller <!-- id: 5 -->
+    - [ ] Frontend: Login, Register Pages <!-- id: 6 -->
+    - [ ] Frontend: User Profile and Management <!-- id: 7 -->
+- [ ] Book Categories Implementation <!-- id: 8 -->
+    - [ ] Backend: Category CRUD <!-- id: 9 -->
+    - [ ] Frontend: Category Tree and Management <!-- id: 10 -->
+- [ ] Book Management Implementation <!-- id: 11 -->
+    - [ ] Backend: Book CRUD and Search <!-- id: 12 -->
+    - [ ] Frontend: Book List and Detail <!-- id: 13 -->
+- [ ] Borrowing System Implementation <!-- id: 14 -->
+    - [ ] Backend: Borrow/Return Logic <!-- id: 15 -->
+    - [ ] Frontend: Borrowing Records and Operations <!-- id: 16 -->
+- [ ] Announcement System Implementation <!-- id: 17 -->
+    - [ ] Backend: Announcement CRUD <!-- id: 18 -->
+    - [ ] Frontend: Announcement Display <!-- id: 19 -->
+- [ ] System Integration and Polishing <!-- id: 20 -->
+    - [ ] Homepage Dashboard <!-- id: 21 -->
+    - [ ] Global Search <!-- id: 22 -->
+    - [ ] Security and Permissions <!-- id: 23 -->
